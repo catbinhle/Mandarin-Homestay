@@ -1,2 +1,0 @@
-# Mandarin-Homestay
-Mandarin Homestay
