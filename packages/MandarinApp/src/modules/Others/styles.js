@@ -21,6 +21,7 @@ const Styles = StyleSheet.create({
         elevation: 10,
         shadowRadius: 8,
         shadowOpacity: 0.1,
+        padding: 16
     },
     infoView: {
         flexDirection: 'row',

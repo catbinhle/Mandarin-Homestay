@@ -15,9 +15,12 @@ import {
     APP_REGISTER_SUCCESS,
     BOOKING_ROOM_SUCCESS,
     BOOKING_ROOM_FAIL,
-    BOOKING_ROOM
+    BOOKING_ROOM,
+    SEARCHING_ROOM,
+    SEARCHING_ROOM_SUCCESS,
+    SEARCHING_ROOM_FAIL
 } from '../defines/ActionTypes'
-import { saveStoreData } from '../utils'
+import { Utils } from '../utils'
 
 function* appLogin(action) {
     try {
@@ -28,7 +31,8 @@ function* appLogin(action) {
                 method: 'post', 
                 param: {
                     username: action.payload.username,
-                    password: action.payload.password
+                    password: action.payload.password,
+                    fcm: action.payload.fcm
                 },
                 isLogin: true
             }
@@ -37,7 +41,7 @@ function* appLogin(action) {
             yield put({type: APP_LOGIN_RESPONSE_FAIL, payload: response.response?.data?.message})
         }else {
             yield put({type: APP_LOGIN_RESPONSE_SUCCESS, payload: response})
-            saveStoreData('@account', {username: action.payload.username, password: action.payload.password})
+            Utils.saveStoreData('@account', {username: action.payload.username, password: action.payload.password})
         }
     
     } catch (e) {
@@ -116,12 +120,36 @@ function* bookingRoom(action) {
         )
         if (response.statusCode === 1) {
             yield put({type: BOOKING_ROOM_SUCCESS, payload: response})
-        }else {
+        } else {
             yield put({type: BOOKING_ROOM_FAIL, payload: response.response?.data?.message})
         }
     } catch (e) {
         console.log(e)
         yield put({type: BOOKING_ROOM_FAIL, payload: response.response?.data?.message})
+    }
+}
+
+function* searchingRoom(action) {
+    try {
+        const {app} = yield select()
+        let token = app.userInfo?.token
+        const response = yield call(
+            postapi,
+            {
+                endPoint: 'homestay/searching', 
+                param: action.payload,
+                token: token
+            }
+        )
+        console.log(`SEARCHING: ${response}`)
+        if (response.statusCode === 1) {
+            yield put({type: SEARCHING_ROOM_SUCCESS, payload: response.data})
+        }else {
+            yield put({type: SEARCHING_ROOM_FAIL, payload: []})
+        }
+    } catch (e) {
+        console.log(e)
+        yield put({type: SEARCHING_ROOM_FAIL, payload: []})
     }
 }
 
@@ -131,6 +159,7 @@ function* appSaga() {
     yield takeEvery(HOME_GET_LIST, getHomeList)
     yield takeEvery(NEWS_GET_LIST, getNewsList)
     yield takeEvery(BOOKING_ROOM, bookingRoom)
+    yield takeEvery(SEARCHING_ROOM, searchingRoom)
 }
 
 export default appSaga

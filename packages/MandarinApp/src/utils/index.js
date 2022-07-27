@@ -1,1 +1,5 @@
-export * from './Utils'
+import * as Utils from './Utils'
+
+export {
+    Utils,
+}

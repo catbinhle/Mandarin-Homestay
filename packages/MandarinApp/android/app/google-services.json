@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1074938146871",
+    "project_id": "mandarin-homestay",
+    "storage_bucket": "mandarin-homestay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074938146871:android:e8930282251fe691e10fb2",
+        "android_client_info": {
+          "package_name": "com.mandarinapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074938146871-7tiurdiqd57qhjll1a4stiliuddmhquf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3afNwQN1lQeAqqdYiECL3AzIwnQh3emo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074938146871-7tiurdiqd57qhjll1a4stiliuddmhquf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1074938146871-h5os8bv8npbr9o1ec1o0g0jknbhmnsip.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MandarinApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

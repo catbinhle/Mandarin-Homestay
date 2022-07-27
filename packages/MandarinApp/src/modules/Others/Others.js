@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text } from 'react-native'
 import styles from './styles'
-import { useSelector, useDispatch } from 'react-redux' 
+import { useSelector, useDispatch } from 'react-redux'
 import { appLogout } from '../../actions/AppActions'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Utils } from '../../utils'
+import {
+    Button,
+} from '../../components'
+import moment from 'moment'
 
 const Others = () => {
-    const dispatch = useDispatch() 
-    const app = useSelector(state => state.app) 
+    const dispatch = useDispatch()
+    const app = useSelector(state => state.app)
     const logout = () => {
-        AsyncStorage.clear()
+        Utils.clearAllData()
         dispatch(appLogout())
     }
+    const BookingView = () => (
+        <View>
+            <View style={[styles.titleView, { marginTop: 8 }]}>
+                <Text style={styles.txtTitle}>Your booking</Text>
+            </View>
+            <View style={styles.infoView}>
+                <Text style={styles.txtTitle}>Date: </Text>
+                <Text style={styles.txtInfo}>{`${moment(app?.userInfo?.booking?.dates[0]).format('ddd DD MMM')} - ${moment(app?.booking?.dates[app?.booking?.dates.length - 1]).format('ddd DD MMM')}`}</Text>
+            </View>
+            <View style={styles.infoView}>
+                <Text style={styles.txtTitle}>Room: </Text>
+                <Text style={styles.txtInfo}>{`${app.userInfo?.booking?.rooms}`}</Text>
+            </View>
+            <View style={styles.infoView}>
+                <Text style={styles.txtTitle}>People: </Text>
+                <Text style={styles.txtInfo}>{`${app.userInfo?.booking?.people}`}</Text>
+            </View>
+        </View>
+    )
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -26,16 +49,12 @@ const Others = () => {
                     <Text style={styles.txtTitle}>Phone: </Text>
                     <Text style={styles.txtInfo}>{app.userInfo?.phoneNumber}</Text>
                 </View>
-                <View style={[styles.titleView, {marginTop: 8}]}>
-                    <Text style={styles.txtTitle}>Your booking</Text>
-                </View>
+                {app.userInfo?.booking?.dates?.length > 0 && <BookingView />}
             </View>
             <View style={styles.buttonView}>
-                <TouchableOpacity 
-                    style={styles.logoutBtn}
-                    onPress={() => logout()}>
-                    <Text style={styles.txtLogout}>Logout</Text>
-                </TouchableOpacity>
+                <Button
+                    onPress={() => logout()}
+                    title='Logout' />
             </View>
         </View>
     )

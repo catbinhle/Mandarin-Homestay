@@ -5,7 +5,11 @@ import {
     BOOKING_ROOM,
     BOOKING_ROOM_SUCCESS,
     BOOKING_ROOM_FAIL,
-    BOOKING_ROOM_CONFIRM
+    BOOKING_ROOM_CONFIRM,
+    SEARCHING_ROOM,
+    SEARCHING_ROOM_SUCCESS,
+    SEARCHING_ROOM_FAIL,
+    SEARCHING_ROOM_CONFIRM
 } from '../defines/ActionTypes'
 
 export const getHomestayList = () => (
@@ -52,5 +56,26 @@ export const bookingRoomFail = (res) => (
 export const bookingRoomConfirm = () => (
     {
         type: BOOKING_ROOM_CONFIRM,
+    }
+)
+
+export const searchingRoom = (res) => (
+    {
+        type: SEARCHING_ROOM,
+        payload: res
+    }
+)
+
+export const searchingRoomSuccess = (res) => (
+    {
+        type: SEARCHING_ROOM_SUCCESS,
+        payload: res
+    }
+)
+
+export const searchingRoomFail = (res) => (
+    {
+        type: SEARCHING_ROOM_FAIL,
+        payload: res
     }
 )

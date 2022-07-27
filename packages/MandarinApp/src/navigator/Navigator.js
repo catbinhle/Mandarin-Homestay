@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { Alert } from "react-native"
 import Home from '../modules/Home/Home'
 import News from "../modules/News/News"
 import Others from "../modules/Others/Others"
@@ -8,10 +9,12 @@ import Booking from "../modules/Booking/Booking"
 import Map from "../modules/Map/Map"
 import NewsDetail from "../modules/NewsDetail/NewDetail"
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useSelector } from 'react-redux'
+import messaging from '@react-native-firebase/messaging'
+// import notifee, { EventType } from '@notifee/react-native';
 
 const HomeStack = createNativeStackNavigator()
 const NewsStack = createNativeStackNavigator()
@@ -138,8 +141,57 @@ const TabsScreen = () => (
     </Tab.Navigator>
 )
 
-const Navigator = () => {
+const Navigator = ({navigation}) => {
+    // const navigation = useNavigation()
+    const [loading, setLoading] = useState(true);
+    const [initialRoute, setInitialRoute] = useState('Login');
     const app = useSelector(state => state.app)
+    useEffect(() => {
+    // Assume a message-notification contains a "type" property in the data payload of the screen to open
+
+    // messaging().onNotificationOpenedApp(remoteMessage => {
+    //     console.log(
+    //       'Notification caused app to open from background state:',
+    //       remoteMessage.notification,
+    //     );
+    //     navigation.navigate(remoteMessage.data.type);
+    //   });
+  
+    //   // Check whether an initial notification is available
+    //   messaging()
+    //     .getInitialNotification()
+    //     .then(remoteMessage => {
+    //       if (remoteMessage) {
+    //         console.log(
+    //           'Notification caused app to open from quit state:',
+    //           remoteMessage.notification,
+    //         );
+    //         setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
+    //       }
+    //       setLoading(false);
+    //     });
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+            // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+            // notifee.displayNotification({
+            //     title: 'Foreground Service Notification',
+            //     body: 'Press the Quick Action to stop the service',
+            //     android: {
+            //       channelId,
+            //       actions: [
+            //         {
+            //           title: 'Stop',
+            //           pressAction: {
+            //             id: 'stop',
+            //           },
+            //         },
+            //       ],
+            //     },
+            //   });
+        })
+  
+        return unsubscribe;
+      }, [])
+
     return (
         <NavigationContainer>
             {

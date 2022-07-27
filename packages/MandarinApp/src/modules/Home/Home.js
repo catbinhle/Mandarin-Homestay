@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getHomestayList } from '../../actions/HomeActions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { PreviewView } from '../../components'
+// import { PushNotify } from '../../utils'
 
 Icon.loadFont()
 
@@ -15,6 +16,8 @@ const Home = ({navigation}) => {
 
     useEffect(() => {
         dispatch(getHomestayList())
+        // PushNotify.requestPermission()
+        // console.log('Push Notify: ', await PushNotify.getToken())
     }, [])
 
     const TitleView = ({title, isBooking = false, onPress}) => (

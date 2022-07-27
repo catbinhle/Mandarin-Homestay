@@ -4,15 +4,19 @@ import {
     BOOKING_ROOM,
     BOOKING_ROOM_SUCCESS,
     BOOKING_ROOM_FAIL, 
-    BOOKING_ROOM_CONFIRM
+    BOOKING_ROOM_CONFIRM,
+    SEARCHING_ROOM,
+    SEARCHING_ROOM_SUCCESS,
+    SEARCHING_ROOM_FAIL
 } from '../defines/ActionTypes'
 
 const initialState = {
     homeList: [],
     bookingInfo: {
         isBooking: false,
-        result: 0 
-    },
+        result: 0,
+        searching: []
+    }
 }
 
 const homeReducer = (state = initialState, action) => {
@@ -27,6 +31,12 @@ const homeReducer = (state = initialState, action) => {
             return {...state, bookingInfo: {isBooking: false, result:2}}
         case BOOKING_ROOM_CONFIRM: 
             return {...state, bookingInfo: {isBooking: false, result:0}}
+        case SEARCHING_ROOM: 
+            return {...state, bookingInfo: {isBooking: true}}
+        case SEARCHING_ROOM_SUCCESS:
+            return {...state, bookingInfo: {isBooking: false, searching: action.payload}} 
+        case SEARCHING_ROOM_FAIL:
+            return {...state, bookingInfo: {isBooking: false, searching: action.payload}} 
         default:
           return state
       }

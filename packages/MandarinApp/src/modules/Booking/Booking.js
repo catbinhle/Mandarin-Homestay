@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { View, Text, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native'
 import styles from './styles'
 import { useSelector, useDispatch } from 'react-redux'
-import { bookingRoom, bookingRoomConfirm } from '../../actions/HomeActions'
+import { bookingRoom, bookingRoomConfirm, searchingRoom } from '../../actions/HomeActions'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 import moment from 'moment'
@@ -14,6 +14,13 @@ import {
     LoadingView,
     ResultView
 } from '../../components'
+// import { PushNotify } from '../../utils'
+// import {
+//     notifications,
+//     messages,
+//     NotificationMessage,
+//     Android
+// } from "react-native-firebase-push-notifications"
 
 Icon.loadFont()
 var originBottomCalendar = 0
@@ -36,8 +43,15 @@ const Booking = () => {
     const [roomInfo, setRoomInfo] = useState(initRoomInfo)
     const dispatch = useDispatch()
     const home = useSelector(state => state.home)
+    const app = useSelector(state => state.app) 
     const bookingInfo = home.bookingInfo
     const homestayInfo = home.homeList[0]
+
+    useEffect(() => {
+        // PushNotify.onNotificationListener()
+        // PushNotify.onNotificationOpenedListener()
+        // PushNotify.getInitialNotification()
+    }, [])
 
     const onDayPress = (day) => {
         if (calendar.isStartDatePicked == false) {
@@ -152,10 +166,16 @@ const Booking = () => {
                             originBottomPeople = layout.height + layout.y
                         }}
                     />
-                    <Button onPress={() => { }} title='Search' />
+                    <Button 
+                        onPress={() => dispatch(searchingRoom({
+                            id: homestayInfo?.id, 
+                            dates: Object.keys(calendar.markedDates), 
+                            rooms: roomInfo.room
+                        }))} 
+                        title='Search' />
                 </View>
             </View>
-            {homestayInfo?.booking < homestayInfo?.numberRooms ?
+            {bookingInfo?.searching?.length > 0 ?
                 <View style={styles.contentView}>
                     <Text style={styles.txtTitle}>{`Available rooms on ${moment(Object.keys(calendar.markedDates)[0]).format('ddd DD MMM')}:`}</Text>
                     <FlatList
@@ -166,13 +186,22 @@ const Booking = () => {
                         renderItem={_renderItem}
                         keyExtractor={(item, index) => `${item.key}${index}`}
                     />
-                    <Button onPress={() => dispatch(bookingRoom({id: homestayInfo?.id, number: roomInfo.room}))} title='Booking' />
+                    <Button 
+                        onPress={() =>{
+                            dispatch(bookingRoom({ 
+                                id: app?.userInfo?.id, 
+                                dates: Object.keys(calendar.markedDates),
+                                people: roomInfo.adult + roomInfo.children,
+                                rooms: bookingInfo?.searching?.filter((room, index) => roomInfo.room > index )
+                            }))
+                        }} 
+                        title='Booking' />
                 </View>
                 :
                 <View style={styles.contentView}>
                     <Text style={styles.txtTitle}>{`Sorry, this time is not room available. \nPlease select other date, thanks you!`}</Text>
-                </View> 
-            }             
+                </View>
+            }
             {originTopPopup > 0 &&
                 <DropdownView
                     childView={originTopPopup === originBottomCalendar ? openCalendar() : openRoomSelection()}
@@ -181,11 +210,23 @@ const Booking = () => {
                     onConfirm={() => setOriginTopPopup(0)}
                 />
             }
-            { bookingInfo?.isBooking && <LoadingView />}
-            { bookingInfo?.result > 0 && <ResultView 
-                title={bookingInfo?.result == 1 ? 'Booking success!' : 'Booking fail!'}  
+            {bookingInfo?.isBooking && <LoadingView />}
+            {bookingInfo?.result > 0 && <ResultView
+                title={bookingInfo?.result == 1 ? 'Booking success!' : 'Booking fail!'}
                 description={bookingInfo?.result == 1 ? 'Thank you for your booking.' : 'Please check your information again.'}
-                onConfirm={() => dispatch(bookingRoomConfirm())}/>}
+                onConfirm={() => {
+                    dispatch(bookingRoomConfirm())
+                    // await notifications.displayNotification(
+                    //     new NotificationMessage()
+                    //         .setNotificationId("notification-id")
+                    //         .setTitle("Madarin Homestay")
+                    //         .setBody("Booking success!")
+                    //         .setData({
+                    //             key1: "key1",
+                    //             key2: "key2"
+                    //         })
+                    // )
+                }} />}
         </View>
     )
 }
