@@ -19,7 +19,7 @@ const Others = () => {
     const BookingView = () => (
         <View>
             <View style={[styles.titleView, { marginTop: 8 }]}>
-                <Text style={styles.txtTitle}>Your booking</Text>
+                <Text style={[styles.txtTitle, {color:"white"}]}>Your booking</Text>
             </View>
             <View style={styles.infoView}>
                 <Text style={styles.txtTitle}>Date: </Text>
@@ -39,7 +39,7 @@ const Others = () => {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.titleView}>
-                    <Text style={styles.txtTitle}>Informations</Text>
+                    <Text style={[styles.txtTitle, {color:"white"}]}>Informations</Text>
                 </View>
                 <View style={styles.infoView}>
                     <Text style={styles.txtTitle}>Name: </Text>

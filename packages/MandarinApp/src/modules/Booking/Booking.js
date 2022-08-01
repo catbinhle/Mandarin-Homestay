@@ -4,8 +4,10 @@ import styles from './styles'
 import { useSelector, useDispatch } from 'react-redux'
 import { bookingRoom, bookingRoomConfirm, searchingRoom } from '../../actions/HomeActions'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import images from "../../defines/Image"
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 import moment from 'moment'
+import { PreviewView } from '../../components'
 import {
     DropdownView,
     Button,
@@ -41,6 +43,7 @@ const Booking = () => {
     const [originTopPopup, setOriginTopPopup] = useState(0)
     const [calendar, setCalendar] = useState(initCalendar)
     const [roomInfo, setRoomInfo] = useState(initRoomInfo)
+    const [pagingImage, setPagingImage] = useState(null)
     const dispatch = useDispatch()
     const home = useSelector(state => state.home)
     const app = useSelector(state => state.app) 
@@ -136,8 +139,47 @@ const Booking = () => {
     const _renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.item}
-            onPress={() => { }}>
+            onPress={() => {setPagingImage(item)}}>
             <Image style={styles.image} source={{ uri: item }} />
+            <View style = {{flexDirection:"column",paddingLeft: 12, paddingVertical: 12, flexGrow:1, justifyContent:"space-between"}}>
+                <View style ={{flex: 1}}>
+                    <Text style = {{fontSize: 18, fontWeight: "bold"}}>Superior Double</Text>
+
+                    <View style = {{flexDirection: "row"}}>
+                        <Icon name={'users'} size={20} color={'grey'} style = {{marginTop: 4}}> </Icon> 
+                        <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 1}}>{"2 Adult (s)"}</Text> 
+                    </View>
+
+                    <View style = {{flexDirection: "row"}}>
+                        <Icon name={"bed"} size={20} color={'grey'} style = {{marginTop: 4}}> </Icon> 
+                        <Text style = {{fontSize: 14, marginTop: 4}}>1 double bed</Text> 
+                    </View>
+
+                    <View style = {{flexDirection: "row"}}>
+                        <Icon name={"spoon"} size={20} color={'grey'} style = {{marginTop: 4, marginLeft: 6}}> </Icon> 
+                        <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 8}}>Breakfast NOT included</Text> 
+                    </View>
+                    
+                </View>
+                <View style = {{alignItems:"flex-end", marginHorizontal: 8}}>
+                    <Text style={styles.txtPrice}>500.000 VND <Text style = {{color: "#a3a3a3"}}>/room/night</Text></Text>
+                    <TouchableOpacity 
+                    onPress={() => {}}
+                    style={{  
+                        height: 40,
+                        backgroundColor: '#b4134b',
+                        borderRadius: 8,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginTop: 8,
+                        width:100,
+                        alignSelf: "flex-end"
+                        }}
+                    >
+                        <Text style = {{color: "white", fontWeight:"bold"}}>Choose</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </TouchableOpacity>
     )
 
@@ -180,22 +222,24 @@ const Booking = () => {
                     <Text style={styles.txtTitle}>{`Available rooms on ${moment(Object.keys(calendar.markedDates)[0]).format('ddd DD MMM')}:`}</Text>
                     <FlatList
                         style={{ flex: 1 }}
-                        numColumns={2}
+                        numColumns={1}
                         showsVerticalScrollIndicator={false}
                         data={homestayInfo?.rooms}
                         renderItem={_renderItem}
                         keyExtractor={(item, index) => `${item.key}${index}`}
                     />
-                    <Button 
-                        onPress={() =>{
-                            dispatch(bookingRoom({ 
-                                id: app?.userInfo?.id, 
-                                dates: Object.keys(calendar.markedDates),
-                                people: roomInfo.adult + roomInfo.children,
-                                rooms: bookingInfo?.searching?.filter((room, index) => roomInfo.room > index )
-                            }))
-                        }} 
+                    <View style={{marginHorizontal:8}}>
+                        <Button 
+                            onPress={() =>{
+                                dispatch(bookingRoom({ 
+                                    id: app?.userInfo?.id, 
+                                    dates: Object.keys(calendar.markedDates),
+                                    people: roomInfo.adult + roomInfo.children,
+                                    rooms: bookingInfo?.searching?.filter((room, index) => roomInfo.room > index )
+                                }))
+                            }} 
                         title='Booking' />
+                    </View>
                 </View>
                 :
                 <View style={styles.contentView}>
@@ -227,6 +271,12 @@ const Booking = () => {
                     //         })
                     // )
                 }} />}
+            {pagingImage != null && 
+                <PreviewView 
+                    item={pagingImage} 
+                    onHide={() => setPagingImage(null)}
+                />
+            }    
         </View>
     )
 }

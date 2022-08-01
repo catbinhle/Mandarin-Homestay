@@ -13,26 +13,27 @@ const Styles = StyleSheet.create({
         flex: 0.1,
         borderColor: '#E6E6FA',
         borderTopWidth: 0.5,
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 10,
-          height: 10
-        },
-        elevation: 10,
-        shadowRadius: 8,
-        shadowOpacity: 0.1,
-        padding: 16
+        margin: 16
+        // shadowColor: 'black',
+        // shadowOffset: {
+        //   width: 10,
+        //   height: 10
+        // },
+        // elevation: 10,
+        // shadowRadius: 8,
+        // shadowOpacity: 0.1,
+        // marginVertical: 16
     },
     infoView: {
         flexDirection: 'row',
     },
     titleView: {
-        backgroundColor: '#EE82EE',
+        backgroundColor: '#800080',
         justifyContent: 'center',
         alignItems: 'flex-start',
         padding: 4,
         paddingLeft: 8,
-        marginBottom: 8
+        marginBottom: 8,
     },
     logoutBtn: {
         flex: 1,
@@ -45,11 +46,12 @@ const Styles = StyleSheet.create({
     txtInfo: {
         fontSize: 16,
         fontWeight: '700',
-        color: 'grey'
+        color: '#595959'
     },
     txtTitle: {
         fontSize: 16,
         fontWeight: '700',
+        color:"black"
     },
     txtLogout: {
         fontSize: 18,

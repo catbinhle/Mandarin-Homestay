@@ -21,6 +21,8 @@ import { Utils } from "../../utils"
 // import { PushNotify } from '../../utils'
 // import notifee, { AndroidVisibility } from '@notifee/react-native'
 import messaging from '@react-native-firebase/messaging'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 const Login = ({navigation}) => {
     const [username, setUsername] = useState('')
@@ -67,35 +69,47 @@ const Login = ({navigation}) => {
         dispatch(appLogin({username: username, password: password, fcm: FCM}))
     }
 
-    const enterBox = ({ title, isPassword = false, placeholder, value, changeText }) => (
-        <EnterBox 
-            title={title}
-            placeholder={placeholder}
-            value={value}
-            isPassword={isPassword}
-            error={app.error}
-            style={styles.boxView}
-            changeText={(text) => {
-                dispatch(appResetError())
-                changeText(text)
-            }}/>
-    )
+    // const enterBox = ({ title, isPassword = false, placeholder, value, changeText}) => (
+    //         <EnterBox 
+    //             title={title}
+    //             placeholder={placeholder}
+    //             value={value}
+    //             isPassword={isPassword}
+    //             error={app.error}
+    //             style={styles.boxView}
+    //             changeText={(text) => {
+    //                 dispatch(appResetError())
+    //                 changeText(text)
+    //             }}/>
+    // )
 
     const loginView = () => (
         <View style={styles.container}>
-            {enterBox({
-                title: 'Username',
-                placeholder: "Enter username",
-                value: username,
-                changeText: (text) => setUsername(text)
-            })}
-            {enterBox({
-                title: 'Password',
-                isPassword: true,
-                placeholder: "Enter password",
-                value: password,
-                changeText: (text) => setPassword(text)
-            })}
+
+            <EnterBox 
+                name={'user'}
+                title={'Username'}
+                placeholder={"Enter username"}
+                value={username}
+                isPassword={false}
+                error={app.error}
+                style={styles.boxView}
+                changeText={(text) => {
+                    dispatch(appResetError())
+                    setUsername(text)
+            }}/>
+            <EnterBox 
+                name={'lock'}
+                title={'Password'}
+                placeholder={"Enter Password"}
+                value={password}
+                isPassword={true}
+                error={app.error}
+                style={styles.boxView}
+                changeText={(text) => {
+                    dispatch(appResetError())
+                    setPassword(text)
+            }}/>
             {app.error && <Text style={styles.txtErrorInfo}>{app.error}</Text>}
             <TouchableOpacity 
                 style={[styles.btn, (username === '' || password === '') && styles.disableBtn]} 

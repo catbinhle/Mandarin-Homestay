@@ -19,7 +19,12 @@ const News = ({navigation}) => {
             <Image style={styles.imageItem} source={{uri: item.images[0]}}/>
             <View style={styles.contentItem}>
                 <Text style={styles.titleTxt}>{item.title}</Text>
-                <Text style={styles.descTxt}>{item.describe}</Text>
+                <Text 
+                numberOfLines={1} 
+                style={styles.descTxt}
+                >
+                    {item.describe}
+                </Text>
             </View>
         </TouchableOpacity>
     )

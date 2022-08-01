@@ -14,8 +14,8 @@ const Styles = StyleSheet.create({
         borderColor: 'grey',
         borderWidth: 0.5,
         borderRadius: 6,
-        marginVertical: 8,
-        height: 44,
+        marginVertical: 12,
+        height: 48,
         backgroundColor: 'white',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -28,7 +28,7 @@ const Styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         fontWeight: 'bold',
-        marginRight: 6
+        marginHorizontal: 4
     },
 })
 

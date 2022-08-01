@@ -12,7 +12,7 @@ const ResultView = ({title, description, onConfirm}) => {
                 <TouchableOpacity 
                     style={styles.btn} 
                     onPress={onConfirm}>
-                    <Text style={styles.txtTitleSuccess}>Confirm</Text>
+                    <Text style={[styles.txtTitleSuccess,{color:"white"}]}>Confirm</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -8,7 +8,7 @@ import Register from "../modules/Register/Register"
 import Booking from "../modules/Booking/Booking"
 import Map from "../modules/Map/Map"
 import NewsDetail from "../modules/NewsDetail/NewDetail"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -22,7 +22,7 @@ const OthersStack = createNativeStackNavigator()
 const LoginStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
-Icon.loadFont()
+// Icon.loadFont()
 
 const HomeStackScreen = () => (
     <HomeStack.Navigator
@@ -48,7 +48,7 @@ const HomeStackScreen = () => (
             options={{
                 headerShown: true,
                 headerStyle: {
-                    backgroundColor: '#7f5bc7',
+                    backgroundColor: '#800080',
                 },
                 headerTintColor: 'white',
                 headerTitleStyle: {
@@ -66,7 +66,7 @@ const NewsStackScreen = () => (
     <NewsStack.Navigator
         screenOptions={{
             headerStyle: {
-                backgroundColor: '#7f5bc7',
+                backgroundColor: '#800080',
             },
             headerTintColor: 'white',
             headerTitleStyle: {
@@ -87,7 +87,7 @@ const OthersStackScreen = () => (
     <OthersStack.Navigator
         screenOptions={{
             headerStyle: {
-                backgroundColor: '#7f5bc7',
+                backgroundColor: '#800080',
             },
             headerTintColor: 'white',
             headerTitleStyle: {
@@ -120,9 +120,9 @@ const TabsScreen = () => (
                 if (route.name === 'Home') {
                     iconName = 'home'
                 } else if (route.name === 'News') {
-                    iconName = 'film'
+                    iconName = 'newspaper'
                 } else {
-                    iconName = 'bars'
+                    iconName = 'list'
                 }
                 return <Icon name={iconName} size={size} color={color}/>
             },
@@ -131,7 +131,7 @@ const TabsScreen = () => (
             size: 24,
             headerShown: false,
             tabBarStyle: {
-                backgroundColor: '#7f5bc7'
+                backgroundColor: '#800080'
             }
         })}
     >

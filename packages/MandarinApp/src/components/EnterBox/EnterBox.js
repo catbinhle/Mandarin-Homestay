@@ -5,12 +5,13 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 Icon.loadFont()
 
-const EnterBox = ({title, placeholder = '', value = '', isPassword = false, error = null, style, changeText}) => {
+const EnterBox = ({name, title, placeholder = '', value = '', isPassword = false, error = null, style, changeText}) => {
     const [isEye, setIsEye] = useState(isPassword)
     return (
         <View style={style}>
-            <Text style={[styles.title, error && styles.errorTitle]}>{title}</Text>
+            {/* <Text style={[styles.title, error && styles.errorTitle]}>{title}</Text> */}
             <View style={[styles.enterBox, error && styles.errorEnterBox]}>
+                <Icon name = {name} size = {20} color = {'grey'}/>
                 <TextInput
                     style={styles.inputText}
                     placeholder={placeholder}

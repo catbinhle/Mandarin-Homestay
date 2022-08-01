@@ -7,17 +7,17 @@ const Styles = StyleSheet.create({
     headImgView: {
         flex: 2,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     contentView: {
         flex: 3,
-        padding: 16
+        padding: 6,
     },
     headImg: {
         height: '100%',
         width: '100%',
-        resizeMode: 'cover',
-        marginBottom: 6
+        resizeMode:'cover',
+        marginBottom: 6, 
     },
     headOverlay: {
         position: 'absolute',
@@ -43,22 +43,22 @@ const Styles = StyleSheet.create({
         justifyContent: 'flex-end',
         width: 180,
         height: 240,
-        shadowColor: 'black',
+        // shadowColor: 'black',
         borderRadius: 8,
-        shadowOffset: {
-          width: 10,
-          height: 10
-        },
-        elevation: 10,
-        shadowRadius: 8,
-        shadowOpacity: 0.1,
+        // shadowOffset: {
+        //   width: 10,
+        //   height: 10
+        // },
+        // elevation: 10,
+        // shadowRadius: 8,
+        // shadowOpacity: 0.1,
         margin: 5,
     },
     titleView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 6,
+        padding: 6,
     },
     bookingView: {
         paddingVertical: 0,
@@ -106,7 +106,8 @@ const Styles = StyleSheet.create({
     },
     txtContentTitle: {
         fontSize: 16,
-        fontWeight: '700',
+        fontWeight: '800',
+        color:"black"
     }
 })
 

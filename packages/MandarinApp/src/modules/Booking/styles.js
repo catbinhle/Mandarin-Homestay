@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native"
 const Styles = StyleSheet.create({
     container: {
         flex: 1, 
+        backgroundColor:"white"
     },
     contentView: {
         flex: 1,
-        padding: 16,
+        padding: 8,
     },
     headImg: {
         position: 'absolute',
@@ -30,25 +31,21 @@ const Styles = StyleSheet.create({
         padding: 16,
     },
     item: {
-        justifyContent: 'flex-end',
-        width: 180,
-        height: 240,
-        shadowColor: 'black',
-        borderRadius: 8,
-        shadowOffset: {
-          width: 10,
-          height: 10
-        },
-        elevation: 10,
-        shadowRadius: 8,
-        shadowOpacity: 0.1,
+        // justifyContent: 'flex-end',
+        flexDirection:"row",
+        height: 250,
         margin: 5,
+        borderRadius: 6,
+        borderWidth: 2,
+        borderColor: "black",
     },
     image: {
-        height: '100%', 
-        width: '100%',
         resizeMode: 'cover',
-        borderRadius: 8
+        borderRadius: 6,
+        height: "100%", 
+        width: "35%",
+        borderBottomRightRadius: 0,
+        borderTopRightRadius: 0
     },
     selectRoomView: {
         flex: 1,
@@ -57,6 +54,11 @@ const Styles = StyleSheet.create({
     txtTitle: {
         fontSize: 18,
         fontWeight: '600',
+    },
+    txtPrice:{
+        fontSize: 14,
+        fontWeight: '500',
+        color: "#f05900",
     },
 })
 
