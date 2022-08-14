@@ -72,7 +72,8 @@ const NewsStackScreen = () => (
             headerTitleStyle: {
                 fontWeight: 'bold',
             },
-            headerBackTitle: ''
+            headerBackTitle: '',
+            headerTitleAlign:"center"
         }}
     >
         <NewsStack.Screen name="News" component={News} />
@@ -93,7 +94,8 @@ const OthersStackScreen = () => (
             headerTitleStyle: {
                 fontWeight: 'bold',
             },
-            headerBackTitle: ''
+            headerBackTitle: '',
+            headerTitleAlign:"center"
         }}
     >
         <OthersStack.Screen name="Others" component={Others} />

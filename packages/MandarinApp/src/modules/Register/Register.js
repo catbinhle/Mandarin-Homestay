@@ -13,6 +13,7 @@ Icon.loadFont()
 const Register = ({navigation}) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLasttName] = useState('')
+    const [email, setEmail] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -29,6 +30,7 @@ const Register = ({navigation}) => {
         dispatch(appRegister({
             username: username, 
             password: password, 
+            email: email,
             firstName: firstName, 
             lastName: lastName,
             phoneNumber: phoneNumber
@@ -40,7 +42,7 @@ const Register = ({navigation}) => {
     }
 
     const verifyInfo = () => {
-        if (username === '' || password === '' || firstName === '' || lastName === '' || username === '' || passwordAgain === '') return false
+        if (username === '' || password === '' ||email === ' '|| firstName === '' || lastName === '' || username === '' || passwordAgain === '') return false
         if (passwordAgain != password) return false 
         return true
     }
@@ -80,6 +82,16 @@ const Register = ({navigation}) => {
                     changeText={(text) => {
                         dispatch(appResetError())
                         setLasttName(text)
+                }}/>
+                <EnterBox 
+                    title={'Email'}
+                    placeholder={'Enter your email'}
+                    value={email}
+                    error={app.error}
+                    style={styles.boxView}
+                    changeText={(text) => {
+                        dispatch(appResetError())
+                        setEmail(text)
                 }}/>
                 <EnterBox 
                     title={'Phone number'}

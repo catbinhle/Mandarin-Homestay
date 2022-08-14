@@ -6,26 +6,27 @@ const Styles = StyleSheet.create({
         margin:6
     },
     item: {
+        // flex: 1,
+        height:80,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: 100,
-        // width:"100%",
         // shadowColor: 'black',
-        borderRadius: 4,
-        borderWidth:1.5,
+        // borderBottomRightRadius: 8,
+        // borderTopRightRadius: 8,
+        borderWidth: 1.5,
+        borderRadius: 6,
         // shadowOffset: {
         //   width: 10,
-        //   height: 10
+        //   height: 10,
         // },
-        // elevation: 10,
+        // elevation: 2,
         // shadowRadius: 8,
-        // shadowOpacity: 0.1,
+        // shadowOpacity: 1,
         margin: 5,
-        // flexWrap: "wrap"
     },
     imageItem: {
-        height: "100%", 
+        height:"100%",
         width: 80,
         resizeMode: 'cover',
         borderRadius: 4,
@@ -36,7 +37,8 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         margin: 6,
-        marginRight: 10
+        marginRight: 10,
+        flexShrink:1
     },
     titleTxt: {
         fontSize: 18,

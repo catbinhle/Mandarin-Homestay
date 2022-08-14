@@ -47,7 +47,7 @@ const Others = () => {
                 </View>
                 <View style={styles.infoView}>
                     <Text style={styles.txtTitle}>Phone: </Text>
-                    <Text style={styles.txtInfo}>{app.userInfo?.phoneNumber}</Text>
+                    <Text style={styles.txtInfo}>{'(+84) ' + app.userInfo?.phoneNumber}</Text>
                 </View>
                 {app.userInfo?.booking?.dates?.length > 0 && <BookingView />}
             </View>

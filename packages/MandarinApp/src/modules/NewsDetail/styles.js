@@ -5,17 +5,19 @@ const Styles = StyleSheet.create({
         flex: 1, 
     },
     content: {
-        marginVertical: 16
+        // marginVertical: 16
     },
     imageContent: {
         width: '100%',
-        height: '80%',
-        resizeMode: 'contain'
+        height: "70%",
+        resizeMode: 'cover'
     },
     descTxt: {
         fontSize: 16,
         fontWeight: '400',
-        margin: 16
+        margin: 16,
+        textAlign:"justify",
+        marginBottom:20
     }
 })
 

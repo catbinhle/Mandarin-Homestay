@@ -4,7 +4,7 @@ const Styles = StyleSheet.create({
     title: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'black'
     },
     errorTitle: {
         color: 'red'
