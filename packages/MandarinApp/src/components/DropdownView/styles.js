@@ -11,6 +11,21 @@ const Styles = StyleSheet.create({
         height: '50%',
         borderRadius: 8
     },
+    btn: {
+        // marginHorizontal: 16,
+        marginTop: 8,
+        paddingVertical: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#864646',
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
+        height: 48
+    },
+    txtTitleSuccess: {
+        fontSize: 16,
+        fontWeight: '900',
+    },
 })
 
 export default Styles

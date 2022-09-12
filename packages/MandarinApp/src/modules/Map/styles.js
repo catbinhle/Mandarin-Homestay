@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
     topView: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#DDA0DD',
+        backgroundColor: '#864646',
         padding: 8,
         marginHorizontal: 16,
         borderRadius: 8,

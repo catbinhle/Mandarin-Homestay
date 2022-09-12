@@ -61,7 +61,7 @@ const Booking = () => {
             let markedDates = {}
             markedDates[day?.dateString] = {
                 startingDay: true,
-                color: '#DDA0DD',
+                color: '#864646',
                 textColor: '#FFFFFF'
             }
             setCalendar({
@@ -81,13 +81,13 @@ const Booking = () => {
                     tempDate = moment(tempDate).format('YYYY-MM-DD')
                     if (i < range) {
                         markedDates[tempDate] = {
-                            color: '#edcbed',
+                            color: '#b97979',
                             textColor: '#FFFFFF'
                         }
                     } else {
                         markedDates[tempDate] = {
                             endingDay: true,
-                            color: '#DDA0DD',
+                            color: '#864646',
                             textColor: '#FFFFFF'
                         }
                     }
@@ -162,12 +162,12 @@ const Booking = () => {
                     
                 </View>
                 <View style = {{alignItems:"flex-end", marginHorizontal: 8}}>
-                    <Text style={styles.txtPrice}>500.000 VND <Text style = {{color: "#a3a3a3"}}>/room/night</Text></Text>
+                    <Text style={styles.txtPrice}>500.000 VND {'\n'} <Text style = {{color: "#a3a3a3"}}> 1 room, 1 night</Text></Text>
                     <TouchableOpacity 
                     onPress={() => {}}
                     style={{  
                         height: 40,
-                        backgroundColor: '#b4134b',
+                        backgroundColor: '#864646',
                         borderRadius: 8,
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -201,7 +201,7 @@ const Booking = () => {
                     <DropdownItem
                         style={{ marginTop: 16 }}
                         icon={'user'}
-                        title={`${roomInfo.room} room - ${roomInfo.adult} adults - ${roomInfo.children} children`}
+                        title={`${roomInfo.room} room(s) - ${roomInfo.adult} adult(s) - ${roomInfo.children} children `}
                         onPress={() => setOriginTopPopup(originBottomPeople)}
                         onLayout={event => {
                             const layout = event.nativeEvent.layout

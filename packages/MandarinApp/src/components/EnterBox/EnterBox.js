@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { View, TextInput, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 Icon.loadFont()
 
@@ -18,11 +18,12 @@ const EnterBox = ({name, title, placeholder = '', value = '', isPassword = false
                     secureTextEntry={isEye}
                     value={value}
                     onChangeText={changeText}
+                    autoCapitalize={'none'}
                 />
                 { isPassword && 
                     <TouchableOpacity 
                         onPress={() => setIsEye(!isEye)}>
-                        <Icon name={isEye ? 'eye' : 'eye-slash'} size={20} color={'black'}/>
+                        <Icon name={isEye ? 'eye-off-outline' : 'eye-outline'} size={20} color={'black'}/>
                     </TouchableOpacity>     
                 }
             </View>

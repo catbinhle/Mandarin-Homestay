@@ -43,15 +43,15 @@ const Styles = StyleSheet.create({
         justifyContent: 'flex-end',
         width: 180,
         height: 240,
-        // shadowColor: 'black',
+        shadowColor: 'black',
         borderRadius: 8,
-        // shadowOffset: {
-        //   width: 10,
-        //   height: 10
-        // },
-        // elevation: 10,
-        // shadowRadius: 8,
-        // shadowOpacity: 0.1,
+        shadowOffset: {
+          width: 10,
+          height: 10
+        },
+        elevation: 10,
+        shadowRadius: 8,
+        shadowOpacity: 0.1,
         margin: 5,
     },
     titleView: {

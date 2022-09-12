@@ -16,8 +16,8 @@ const Map = ({navigation}) => {
                 style={styles.map}
                 // provider={'google'}
                 region={{
-                    latitude: 16.454731919607454,
-                    longitude: 107.55152508588519,
+                    latitude: 10.773119,
+                    longitude: 106.706276,
                     latitudeDelta: 0.025,
                     longitudeDelta: 0.025,
                   }}
@@ -27,9 +27,9 @@ const Map = ({navigation}) => {
             >
                     <Marker
                         // key={index}
-                        coordinate={{ latitude : 16.454731919607454 , longitude : 107.55152508588519 }}
-                        title={'Madarin homestay'}
-                        description={'6 Ba Nguyen Dinh Chi, Hue city'}
+                        coordinate={{ latitude : 10.773119 , longitude : 106.706276 }}
+                        title={'Onirique Homestay'}
+                        description={'1 Đồng Khởi, phường Bến Nghé, quận 1, Tp.Hồ Chí Minh'}
                        // image={{uri: 'https://icon-library.com/images/google-map-pin-icon-png/google-map-pin-icon-png-0.jpg'}}
                     >
                         <Image style={{width: 40, height: 40, resizeMode: 'cover'}} source={{uri: 'https://icon-library.com/images/google-map-pin-icon-png/google-map-pin-icon-png-0.jpg'}}/>

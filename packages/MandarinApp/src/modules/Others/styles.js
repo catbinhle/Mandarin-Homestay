@@ -26,14 +26,15 @@ const Styles = StyleSheet.create({
     },
     infoView: {
         flexDirection: 'row',
+        marginBottom: 4
     },
     titleView: {
-        backgroundColor: '#800080',
+        
         justifyContent: 'center',
         alignItems: 'flex-start',
-        padding: 4,
-        paddingLeft: 8,
-        marginBottom: 8,
+        // paddingLeft: 8,
+        marginBottom: 6,
+        
     },
     logoutBtn: {
         flex: 1,
@@ -43,15 +44,20 @@ const Styles = StyleSheet.create({
         margin: 16,
         borderRadius: 8,
     },
+    txtTitle:{
+        color: '#864646', 
+        fontSize: 26,
+        fontWeight: "bold"
+    },
     txtInfo: {
         fontSize: 16,
         fontWeight: '700',
         color: '#595959'
     },
-    txtTitle: {
+    txtInfoTitle: {
         fontSize: 16,
         fontWeight: '700',
-        color:"black"
+        color: 'black',
     },
     txtLogout: {
         fontSize: 18,

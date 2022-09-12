@@ -28,7 +28,8 @@ const Styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         fontWeight: 'bold',
-        marginHorizontal: 4
+        marginHorizontal: 8,
+        textTransform: "uppercase"
     },
 })
 

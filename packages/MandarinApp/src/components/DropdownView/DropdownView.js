@@ -1,9 +1,9 @@
 import React from "react"
-import { View } from 'react-native'
+import { View, TouchableOpacity, Text } from 'react-native'
 import styles from './styles'
 import PopupView from "../PopupView/PopupView"
 import HideView from "../HideView/HideView"
-import Button from "../Button/Button"
+// import { TouchableOpacity } from "react-native"
 
 const DropdownView = ({childView, originTopPopup, onHide, onConfirm}) => {
     return (
@@ -12,7 +12,11 @@ const DropdownView = ({childView, originTopPopup, onHide, onConfirm}) => {
                 <HideView onPress={onHide}/>
                 <View style={[{ marginTop: originTopPopup + 2 }, styles.contentsPopupView]}>
                     {childView}
-                    <Button onPress={onConfirm} title='Confirm'/> 
+                    <TouchableOpacity 
+                    style={styles.btn} 
+                    onPress={onConfirm}>
+                    <Text style={[styles.txtTitleSuccess,{color:"white"}]}>Confirm</Text>
+                </TouchableOpacity>
                 </View>
             </View>
         }/>

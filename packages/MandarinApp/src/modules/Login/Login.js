@@ -87,7 +87,7 @@ const Login = ({navigation}) => {
         <View style={styles.container}>
 
             <EnterBox 
-                name={'user'}
+                name={'account'}
                 title={'Username'}
                 placeholder={"Enter username"}
                 value={username}
@@ -127,7 +127,7 @@ const Login = ({navigation}) => {
             <View style={styles.overlayBGView}/>
             <View style={styles.infoView}>
                 <Text style={styles.titleTxt}>
-                    {'MANDARIN\nHOMESTAY'}
+                    {'ONIRIQUE\nHOMESTAY'}
                 </Text>
             </View>
             { loginView() }

@@ -50,8 +50,8 @@ const Home = ({navigation}) => {
                 <View style={styles.headOverlay}/>
                 <View style={styles.headContentsView}>
                     <View>
-                        <Text style={styles.txtName}>{homestayInfo?.name}</Text>
-                        <Text style={styles.txtAddress}>{homestayInfo?.address}</Text>
+                        <Text style={styles.txtName}>{'Onirique'}</Text>
+                        <Text style={styles.txtAddress}>{'1 Dong Khoi, district 1, HCMC'}</Text>
                     </View>
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('Map')}>

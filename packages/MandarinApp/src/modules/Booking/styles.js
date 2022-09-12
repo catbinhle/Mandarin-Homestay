@@ -32,12 +32,20 @@ const Styles = StyleSheet.create({
     },
     item: {
         // justifyContent: 'flex-end',
+        backgroundColor: "white",
         flexDirection:"row",
         height: 250,
         margin: 5,
-        borderRadius: 6,
-        borderWidth: 2,
-        borderColor: "black",
+        marginVertical: 8,
+        shadowColor: 'black',
+        borderRadius: 8,
+        shadowOffset: {
+          width: 5,
+          height: 5,
+        },
+        elevation: 5,
+        shadowRadius: 4,
+        shadowOpacity: 0.2,
     },
     image: {
         resizeMode: 'cover',
@@ -58,7 +66,8 @@ const Styles = StyleSheet.create({
     txtPrice:{
         fontSize: 14,
         fontWeight: '500',
-        color: "#f05900",
+        color: "#BE8C63",
+        textAlign:"right"
     },
 })
 

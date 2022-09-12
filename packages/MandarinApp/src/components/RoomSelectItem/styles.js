@@ -16,7 +16,7 @@ const Styles = StyleSheet.create({
         width: 48,
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#DDA0DD',
+        borderColor: '#864646',
         borderWidth: 1,
         borderRadius: 4
     },
@@ -31,7 +31,7 @@ const Styles = StyleSheet.create({
     txtBtn: {
         fontSize: 24,
         fontWeight: '600',
-        color: '#DDA0DD',
+        color: '#864646',
     },
     txtDisableBtn: {
         color: '#d3d3d3'
