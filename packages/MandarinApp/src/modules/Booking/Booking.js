@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity, Image, ScrollView, FlatList } from 'react-native'
-import styles from './styles'
-import { useSelector, useDispatch } from 'react-redux'
-import { bookingRoom, bookingRoomConfirm, searchingRoom } from '../../actions/HomeActions'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import images from "../../defines/Image"
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
-import moment from 'moment'
-import { PreviewView } from '../../components'
+import React, { useEffect, useState } from 'react';
+
+import moment from 'moment';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Calendar } from 'react-native-calendars';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { bookingRoomConfirm, searchingRoom } from '../../actions/HomeActions';
 import {
-    DropdownView,
-    Button,
-    DropdownItem,
-    RoomSelectItem,
-    LoadingView,
-    ResultView
-} from '../../components'
+  Button, DropdownItem, DropdownView, LoadingView, PreviewView, ResultView,
+  RoomSelectItem,
+} from '../../components';
+import styles from './styles';
+
 // import { PushNotify } from '../../utils'
 // import {
 //     notifications,
@@ -139,20 +136,20 @@ const Booking = () => {
     const _renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.item}
-            onPress={() => {setPagingImage(item)}}>
-            <Image style={styles.image} source={{ uri: item }} />
+            onPress={() => {setPagingImage(item?.image)}}>
+            <Image style={styles.image} source={{ uri: item?.image }} />
             <View style = {{flexDirection:"column",paddingLeft: 12, paddingVertical: 12, flexGrow:1, justifyContent:"space-between"}}>
                 <View style ={{flex: 1}}>
-                    <Text style = {{fontSize: 18, fontWeight: "bold"}}>Superior Double</Text>
+                    <Text style = {{fontSize: 18, fontWeight: "bold"}}>{item?.type}</Text>
 
                     <View style = {{flexDirection: "row"}}>
                         <Icon name={'users'} size={20} color={'grey'} style = {{marginTop: 4}}> </Icon> 
-                        <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 1}}>{"2 Adult (s)"}</Text> 
+                        <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 1}}>{`${item?.type === 'Superior Double' ? 2 : 4} Adult (s)`}</Text> 
                     </View>
 
                     <View style = {{flexDirection: "row"}}>
                         <Icon name={"bed"} size={20} color={'grey'} style = {{marginTop: 4}}> </Icon> 
-                        <Text style = {{fontSize: 14, marginTop: 4}}>1 double bed</Text> 
+                        <Text style = {{fontSize: 14, marginTop: 4}}>{`${item?.type === 'Superior Double' ? 1 : 2} double bed`}</Text> 
                     </View>
 
                     <View style = {{flexDirection: "row"}}>
@@ -162,7 +159,7 @@ const Booking = () => {
                     
                 </View>
                 <View style = {{alignItems:"flex-end", marginHorizontal: 8}}>
-                    <Text style={styles.txtPrice}>500.000 VND {'\n'} <Text style = {{color: "#a3a3a3"}}> 1 room, 1 night</Text></Text>
+                    <Text style={styles.txtPrice}>{`${item?.price}.000 VND \n`} <Text style = {{color: "#a3a3a3"}}> 1 room, 1 night</Text></Text>
                     <TouchableOpacity 
                     onPress={() => {}}
                     style={{  
@@ -224,7 +221,7 @@ const Booking = () => {
                         style={{ flex: 1 }}
                         numColumns={1}
                         showsVerticalScrollIndicator={false}
-                        data={homestayInfo?.rooms}
+                        data={bookingInfo?.searching}
                         renderItem={_renderItem}
                         keyExtractor={(item, index) => `${item.key}${index}`}
                     />

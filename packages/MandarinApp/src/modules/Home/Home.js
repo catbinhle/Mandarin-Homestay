@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react"
-import { View, Text, TouchableOpacity, FlatList, Image, ScrollView } from 'react-native'
-import styles from './styles'
-import { useSelector, useDispatch } from 'react-redux' 
-import { getHomestayList } from '../../actions/HomeActions'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { Button, PreviewView } from '../../components'
+import React, { useEffect, useState } from 'react';
+
+import {
+  FlatList, Image, ScrollView, Text, TouchableOpacity, View,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getHomestayList } from '../../actions/HomeActions';
+import { Button, PreviewView } from '../../components';
+import styles from './styles';
+
 // import { PushNotify } from '../../utils'
 
 // Icon.loadFont()
@@ -34,6 +39,14 @@ const Home = ({navigation}) => {
         </View>
     )
 
+    const _renderRoomsItem = ({item}) => (
+        <TouchableOpacity 
+            style={styles.item}
+            onPress={() => setPagingImage(item?.image)}>
+            <Image style={styles.image} source={{uri: item?.image}}/>
+        </TouchableOpacity>
+    )
+
     const _renderItem = ({item}) => (
         <TouchableOpacity 
             style={styles.item}
@@ -50,8 +63,8 @@ const Home = ({navigation}) => {
                 <View style={styles.headOverlay}/>
                 <View style={styles.headContentsView}>
                     <View>
-                        <Text style={styles.txtName}>{'Onirique'}</Text>
-                        <Text style={styles.txtAddress}>{'1 Dong Khoi, district 1, HCMC'}</Text>
+                        <Text style={styles.txtName}>{'Mandarin'}</Text>
+                        <Text style={styles.txtAddress}>{'06 Ba Nguyen Dinh Chi, Hue city'}</Text>
                     </View>
                     <TouchableOpacity 
                         onPress={() => navigation.navigate('Map')}>
@@ -71,7 +84,7 @@ const Home = ({navigation}) => {
                         horizontal
                         showsHorizontalScrollIndicator={false}
                         data={homestayInfo?.rooms}
-                        renderItem={_renderItem}
+                        renderItem={_renderRoomsItem}
                         keyExtractor={(item, index) => `${item.key}${index}`}
                     />
                     <Button

@@ -1,17 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { 
-    View, 
-    Text, 
-    TouchableOpacity, 
-    Image 
-} from 'react-native'
-import styles from './styles'
-import { useSelector, useDispatch } from 'react-redux' 
-import { appLogin, appResetError } from '../../actions/AppActions'
-import images from "../../defines/Image"
-import { LoadingView } from '../../components'
-import EnterBox from "../../components/EnterBox/EnterBox"
-import { Utils } from "../../utils"
+import React, { useEffect, useState } from 'react';
+
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
 // import {
 //     notifications,
 //     messages,
@@ -20,9 +11,14 @@ import { Utils } from "../../utils"
 // } from "react-native-firebase-push-notifications"
 // import { PushNotify } from '../../utils'
 // import notifee, { AndroidVisibility } from '@notifee/react-native'
-import messaging from '@react-native-firebase/messaging'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import messaging from '@react-native-firebase/messaging';
 
+import { appLogin, appResetError } from '../../actions/AppActions';
+import { LoadingView } from '../../components';
+import EnterBox from '../../components/EnterBox/EnterBox';
+import images from '../../defines/Image';
+import { Utils } from '../../utils';
+import styles from './styles';
 
 const Login = ({navigation}) => {
     const [username, setUsername] = useState('')
@@ -127,7 +123,7 @@ const Login = ({navigation}) => {
             <View style={styles.overlayBGView}/>
             <View style={styles.infoView}>
                 <Text style={styles.titleTxt}>
-                    {'ONIRIQUE\nHOMESTAY'}
+                    {'MANDARIN\nHOMESTAY'}
                 </Text>
             </View>
             { loginView() }

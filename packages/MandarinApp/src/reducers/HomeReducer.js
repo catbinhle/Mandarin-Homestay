@@ -1,14 +1,8 @@
-import { 
-    HOME_GET_LIST_RES_SUCCESS, 
-    HOME_GET_LIST_RES_FAIL,
-    BOOKING_ROOM,
-    BOOKING_ROOM_SUCCESS,
-    BOOKING_ROOM_FAIL, 
-    BOOKING_ROOM_CONFIRM,
-    SEARCHING_ROOM,
-    SEARCHING_ROOM_SUCCESS,
-    SEARCHING_ROOM_FAIL
-} from '../defines/ActionTypes'
+import {
+  BOOKING_ROOM, BOOKING_ROOM_CONFIRM, BOOKING_ROOM_FAIL, BOOKING_ROOM_SUCCESS,
+  HOME_GET_LIST_RES_SUCCESS, SEARCHING_ROOM, SEARCHING_ROOM_FAIL,
+  SEARCHING_ROOM_SUCCESS,
+} from '../defines/ActionTypes';
 
 const initialState = {
     homeList: [],
@@ -34,7 +28,7 @@ const homeReducer = (state = initialState, action) => {
         case SEARCHING_ROOM: 
             return {...state, bookingInfo: {isBooking: true}}
         case SEARCHING_ROOM_SUCCESS:
-            return {...state, bookingInfo: {isBooking: false, searching: action.payload}} 
+            return {...state, bookingInfo: {isBooking: false, searching: action.payload?.filter(item => item?.number > 0)}} 
         case SEARCHING_ROOM_FAIL:
             return {...state, bookingInfo: {isBooking: false, searching: action.payload}} 
         default:
