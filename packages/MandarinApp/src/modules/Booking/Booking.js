@@ -51,7 +51,17 @@ const Booking = () => {
         // PushNotify.onNotificationListener()
         // PushNotify.onNotificationOpenedListener()
         // PushNotify.getInitialNotification()
+        searchingRooms({
+            id: homestayInfo?.id, 
+            dates: [moment().format('YYYY-MM-DD')], 
+            rooms: 1
+        })
     }, [])
+
+    const searchingRooms = (params) => {
+        console.log('****', params)
+        dispatch(searchingRoom(params))
+    }
 
     const onDayPress = (day) => {
         if (calendar.isStartDatePicked == false) {
@@ -156,6 +166,7 @@ const Booking = () => {
                         <Icon name={"spoon"} size={20} color={'grey'} style = {{marginTop: 4, marginLeft: 6}}> </Icon> 
                         <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 8}}>Breakfast NOT included</Text> 
                     </View>
+                    <Text style = {{fontSize: 14, marginTop: 4, marginLeft: 8, color: 'red', fontWeight: 'bold'}}>{`Only ${item?.number} ${item?.number > 1 ? `rooms` : `room`} left`}</Text> 
                     
                 </View>
                 <View style = {{alignItems:"flex-end", marginHorizontal: 8}}>
@@ -206,11 +217,11 @@ const Booking = () => {
                         }}
                     />
                     <Button 
-                        onPress={() => dispatch(searchingRoom({
+                        onPress={() => searchingRooms({
                             id: homestayInfo?.id, 
                             dates: Object.keys(calendar.markedDates), 
                             rooms: roomInfo.room
-                        }))} 
+                        })} 
                         title='Search' />
                 </View>
             </View>
