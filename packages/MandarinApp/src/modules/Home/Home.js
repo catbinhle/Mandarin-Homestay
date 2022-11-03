@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  FlatList, Image, ScrollView, Text, TouchableOpacity, View,
+  Dimensions, FlatList, Image, Text, TouchableOpacity, View,
 } from 'react-native';
+import { ImageHeaderScrollView } from 'react-native-image-header-scroll-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getHomestayList } from '../../actions/HomeActions';
-import { Button, PreviewView } from '../../components';
+import PreviewView, { Button } from '../../components';
 import styles from './styles';
 
 // import { PushNotify } from '../../utils'
 
 // Icon.loadFont()
+
+const ScreenSize = Dimensions.get('window')
+const MIN_HEIGHT = 88
 
 const Home = ({navigation}) => {
     const [pagingImage, setPagingImage] = useState(null)
@@ -57,29 +61,29 @@ const Home = ({navigation}) => {
     console.log('HOME LOG: ', homeList)
     const homestayInfo = homeList[0]
     return (
-        <View style={styles.container}>
-            <View style={styles.headImgView}>
-                <Image style={styles.headImg} source={{uri: homestayInfo?.mainImage}}/>
-                <View style={styles.headOverlay}/>
-                <View style={styles.headContentsView}>
-                    <View>
-                        <Text style={styles.txtName}>{'Mandarin'}</Text>
-                        <Text style={styles.txtAddress}>{'06 Ba Nguyen Dinh Chi, Hue city'}</Text>
+        <ImageHeaderScrollView
+            maxHeight={ScreenSize.height * 2/5}
+            minHeight={MIN_HEIGHT}
+            headerImage={{uri: homestayInfo?.mainImage}}
+            showsVerticalScrollIndicator={false}
+            renderForeground={() => (
+                <View style={styles.headImgView}>
+                    <View style={styles.headOverlay}/>
+                    <View style={styles.headContentsView}>
+                        <View>
+                            <Text style={styles.txtName}>{'Mandarin'}</Text>
+                            <Text style={styles.txtAddress}>{'06 Ba Nguyen Dinh Chi, Hue city'}</Text>
+                        </View>
+                        <TouchableOpacity 
+                            onPress={() => navigation.navigate('Map')}>
+                            <Icon name={'compass'} size={32} color={'white'}/>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity 
-                        onPress={() => navigation.navigate('Map')}>
-                        <Icon name={'compass'} size={32} color={'white'}/>
-                    </TouchableOpacity>
                 </View>
-            </View>
+            )}
+            >
             <View style={styles.contentView}>
-                <ScrollView 
-                    contentContainerStyle={{ flexGrow: 1 }}
-                    showsVerticalScrollIndicator={false}
-                >
-                    <TitleView 
-                        title={'Homestay'}
-                    />
+                <TitleView title={'Homestay'}/>
                     <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
@@ -101,7 +105,6 @@ const Home = ({navigation}) => {
                         renderItem={_renderItem}
                         keyExtractor={(item, index) => `${item.key}${index}`}
                     />
-                </ScrollView>
             </View>
             {pagingImage != null && 
                 <PreviewView 
@@ -109,7 +112,7 @@ const Home = ({navigation}) => {
                     onHide={() => setPagingImage(null)}
                 />
             }
-        </View>
+        </ImageHeaderScrollView>
     )
 }
 

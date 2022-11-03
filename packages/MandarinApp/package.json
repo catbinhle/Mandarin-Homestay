@@ -26,6 +26,7 @@
     "react": "17.0.2",
     "react-native": "0.68.2",
     "react-native-calendars": "^1.1284.0",
+    "react-native-image-header-scroll-view": "^1.0.0",
     "react-native-maps": "^0.31.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
